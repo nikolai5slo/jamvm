@@ -394,6 +394,11 @@
 #define MB_PREPARING            1
 #define MB_PREPARED             2
 
+
+/* VMEP FrameType **/
+#define FRM_NORMAL		0
+#define FRM_VMEP		1
+
 typedef unsigned char          u1;
 typedef unsigned short         u2;
 typedef unsigned int           u4;
@@ -470,7 +475,7 @@ typedef union ins_operand {
 } Operand;
 
 typedef struct instruction {
-#ifdef DIRECT_DEBUG
+#if defined(DIRECT_DEBUG) || defined(VMEP)
     unsigned char opcode;
     char cache_depth;
     short bytecode_pc;
@@ -677,6 +682,9 @@ typedef struct frame {
    uintptr_t *ostack;
    MethodBlock *mb;
    struct frame *prev;
+#ifdef VMEP 
+	int type;
+#endif
 } Frame;
 
 typedef struct jni_frame {

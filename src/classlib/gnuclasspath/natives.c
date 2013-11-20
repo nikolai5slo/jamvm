@@ -38,6 +38,7 @@
 #include "excep.h"
 #include "reflect.h"
 #include "gnuclasspath.h"
+#include "vmep.h"
 
 static int pd_offset;
 
@@ -1251,6 +1252,18 @@ uintptr_t *nativeUnloadDll(Class *class, MethodBlock *mb, uintptr_t *ostack) {
     return ostack;
 }
 
+/* jamvm.vmep.Monitor */
+uintptr_t *vmepMonitorStart(Class *class, MethodBlock *mb, uintptr_t *ostack) {
+	vmepAddMonitor((Object*)*ostack);
+	return ostack;
+}
+
+uintptr_t *vmepMonitorStop(Class *class, MethodBlock *mb, uintptr_t *ostack) {
+	vmepRemoveMonitor((Object*)*ostack);
+	return ostack;
+}
+
+
 VMMethod vm_object[] = {
     {"getClass",                    NULL, getClass},
     {"clone",                       NULL, jamClone},
@@ -1471,6 +1484,13 @@ VMMethod vm_class_loader_data[] = {
     {NULL,                          NULL, NULL}
 };
 
+/* VMEP Monitor */
+VMMethod vmep_monitor[]={
+	{"start",	NULL,vmepMonitorStart},
+	{"stop",	NULL,vmepMonitorStop},
+	{NULL,NULL,NULL}
+};
+
 VMClass native_methods[] = {
     {"java/lang/VMClass",                           vm_class},
     {"java/lang/VMObject",                          vm_object},
@@ -1490,6 +1510,7 @@ VMClass native_methods[] = {
     {"gnu/java/lang/management/VMThreadMXBeanImpl", vm_threadmx_bean_impl},
     {"sun/misc/Unsafe",                             sun_misc_unsafe},
     {"jamvm/java/lang/VMClassLoaderData$Unloader",  vm_class_loader_data},
+    {"jamvm/vmep/Monitor",			    vmep_monitor},
     {"java/util/concurrent/atomic/AtomicLong",      concurrent_atomic_long},
     {NULL,                                          NULL}
 };

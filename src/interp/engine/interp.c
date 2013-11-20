@@ -39,6 +39,7 @@
 #include "class.h"
 #include "classlib.h"
 
+#include "vmep.h"
 uintptr_t *executeJava() {
 
     /* Definitions specific to the particular

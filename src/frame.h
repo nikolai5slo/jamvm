@@ -40,6 +40,7 @@
                overflow.  Stack extension should be enough      \
                to throw exception, so something's seriously     \
                gone wrong - abort the VM! */                    \
+            printf("%d __ %d\n",((char*)(new_ostack + mb->max_stack) - ee->stack_end),ee->stack_end);	\
             printf("Fatal stack overflow!  Aborting VM.\n");    \
             exitVM(1);                                          \
         }                                                       \

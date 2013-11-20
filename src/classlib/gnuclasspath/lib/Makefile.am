@@ -42,7 +42,8 @@ JAVA_FILES = $(srcdir)/jamvm/java/lang/JarLauncher.java \
              $(srcdir)/java/security/VMAccessController.java \
              $(srcdir)/gnu/classpath/VMSystemProperties.java \
              $(srcdir)/sun/reflect/annotation/AnnotationInvocationHandler.java \
-             $(srcdir)/gnu/classpath/VMStackWalker.java
+             $(srcdir)/gnu/classpath/VMStackWalker.java \
+	     $(srcdir)/jamvm/vmep/Monitor.java 
 
 
 inst_classes.zip: classes.zip

@@ -172,7 +172,7 @@ retry:
 #endif
                     map[pc] = ins_count;
             }
-#ifdef DIRECT_DEBUG
+#if defined(DIRECT_DEBUG) || defined(VMEP)
             else {
                 new_code[ins_count].opcode = opcode;
                 new_code[ins_count].bytecode_pc = pc;

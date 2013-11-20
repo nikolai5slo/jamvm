@@ -231,6 +231,7 @@ opc##x##_##y##_##z:
     label(opcode, level, ENTRY)                 \
         PRE                                     \
     GUARD(opcode, level)                        \
+	VEMP_EXECD()				\
         BODY                                    \
     label(opcode, level, END)
 

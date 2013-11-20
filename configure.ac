@@ -60,6 +60,12 @@ os=$host_os
 AC_SUBST(arch)
 AC_SUBST(os)
 
+AC_ARG_ENABLE(vmep,
+    [AS_HELP_STRING(--enable-vmep,enables Virtual Machine entry point library (default disabled))],
+    [if test "$enableval" != no; then
+        AC_DEFINE([VMEP],1,[defined if vmep enabled])
+    fi],)
+
 AC_ARG_ENABLE(tracegc,
     [AS_HELP_STRING(--enable-tracegc,add gc tracing (for debugging))],
     [if test "$enableval" != no; then
@@ -427,7 +433,8 @@ AC_CONFIG_FILES(
     src/classlib/gnuclasspath/lib/sun/reflect/annotation/Makefile \
     src/classlib/gnuclasspath/lib/sun/reflect/Makefile \
     src/classlib/gnuclasspath/lib/sun/Makefile \
-    src/classlib/gnuclasspath/lib/gnu/classpath/Makefile)
+    src/classlib/gnuclasspath/lib/gnu/classpath/Makefile \
+    src/classlib/gnuclasspath/lib/jamvm/vmep/Makefile)
 
 AC_OUTPUT
 

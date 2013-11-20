@@ -1,5 +1,5 @@
 ##
-## Copyright (C) 2003, 2004, 2005, 2006, 2007, 2009
+## Copyright (C) 2003, 2004, 2005, 2006, 2007
 ## Robert Lougher <rob@jamvm.org.uk>.
 ##
 ## This file is part of JamVM.
@@ -19,7 +19,5 @@
 ## Foundation, 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.
 ##
 
-SUBDIRS = java vmep
-
 EXTRA_DIST = \
-ThreadInfoHelper.java
+Monitor.java
