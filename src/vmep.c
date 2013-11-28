@@ -15,8 +15,12 @@
 #include "frame.h"
 
 
+//TODO:Needs to be added to thread dependent
 MonitorItem* first_monitor=NULL;
 MonitorItem* last_monitor=NULL;
+int vmep_mode=0;
+MethodBlock *oldmb=NULL;
+Object *array=NULL;
 
 /** Add vmep monitor to monitor the system */
 void vmepAddMonitor(Object* monitor){
@@ -64,23 +68,20 @@ FieldBlock *vmepFindField(Class *class, char *fieldname, char *type) {
 MethodBlock *vmepFindMethod(Class *class, char *methodname, char *type) {
    return findMethod(class,newUtf8(methodname),newUtf8(type));
 }
-int vmepMODE=0;
 
-MethodBlock *oldmb=NULL;
-Object *array=NULL;
 void vmepCountAdd(Object *monitor,MethodBlock *mb,int opcode){
-	MethodBlock *mmb = findMethod(monitor->class,newUtf8("getArrayCount"), newUtf8("(Ljava/lang/reflect/Method;)[I"));   
-
 	if(oldmb!=mb){
-		vmepMODE|=VMEP_MODE_MONITOR;	
+		MethodBlock *mmb = findMethod(monitor->class,newUtf8("getArrayCount"), newUtf8("(Ljava/lang/reflect/Method;)[I"));   
+
+		vmep_mode|=VMEP_MODE_MONITOR;	
 		array=*((Object**)executeMethod(monitor,mmb,classlibCreateMethodObject(mb)));
 		oldmb=mb;
-		vmepMODE^=VMEP_MODE_MONITOR;	
+		vmep_mode^=VMEP_MODE_MONITOR;	
 	}
 	ARRAY_DATA(array, int)[opcode]++;
 }
 
-void vmepExeListener(int opcode){
+void vmepExeListener(Instruction inst,Frame frame){
 
 }
 void vmepInvokeListener(){

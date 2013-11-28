@@ -11,14 +11,14 @@ struct monitor_item{
 } typedef MonitorItem;
 
 extern MonitorItem* first_monitor;
-extern int vmepMODE;
+extern int vmep_mode;
 
 #define VMEP_MODE_MONITOR 1
 #define VMEP_MODE_LISTENER 2
 
 #define VEMP_EXECD()									\
 {											\
-	if(!(vmepMODE && VMEP_MODE_MONITOR)){						\
+	if(!(vmep_mode && VMEP_MODE_MONITOR)){						\
 		Instruction* inst=(Instruction*)pc;					\
 		int opcode=inst->opcode;						\
 		Object* obj;								\

@@ -217,5 +217,5 @@ MethodBlock *vmepFindMethod(Class *class, char *methodname, char *type){ return 
 void vmepCountAdd(Object *monitor,MethodBlock *mb,int opcode){}
 
 MonitorItem* first_monitor=NULL;
-int vmepMODE;
+int vmep_mode;
 

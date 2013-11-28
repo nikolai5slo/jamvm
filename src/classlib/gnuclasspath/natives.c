@@ -1486,8 +1486,14 @@ VMMethod vm_class_loader_data[] = {
 
 /* VMEP Monitor */
 VMMethod vmep_monitor[]={
-	{"start",	NULL,vmepMonitorStart},
-	{"stop",	NULL,vmepMonitorStop},
+	{"mstart",	NULL,vmepMonitorStart},
+	{"mstop",	NULL,vmepMonitorStop},
+	{NULL,NULL,NULL}
+};
+/* VMEP Core */
+VMMethod vmep_core[]={
+	//{"addCoreListener",	NULL,vmepMonitorStart},
+	//{"removeCoreListener",	NULL,vmepMonitorStop},
 	{NULL,NULL,NULL}
 };
 
@@ -1511,6 +1517,7 @@ VMClass native_methods[] = {
     {"sun/misc/Unsafe",                             sun_misc_unsafe},
     {"jamvm/java/lang/VMClassLoaderData$Unloader",  vm_class_loader_data},
     {"jamvm/vmep/Monitor",			    vmep_monitor},
+    {"jamvm/vmep/Core",			    	    vmep_core},
     {"java/util/concurrent/atomic/AtomicLong",      concurrent_atomic_long},
     {NULL,                                          NULL}
 };

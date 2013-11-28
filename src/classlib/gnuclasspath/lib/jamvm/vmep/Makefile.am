@@ -20,4 +20,5 @@
 ##
 
 EXTRA_DIST = \
-Monitor.java
+Monitor.java \
+Opcode.java
