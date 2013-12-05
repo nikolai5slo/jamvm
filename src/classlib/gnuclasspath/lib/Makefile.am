@@ -44,7 +44,8 @@ JAVA_FILES = $(srcdir)/jamvm/java/lang/JarLauncher.java \
              $(srcdir)/sun/reflect/annotation/AnnotationInvocationHandler.java \
              $(srcdir)/gnu/classpath/VMStackWalker.java \
 	     $(srcdir)/jamvm/vmep/Monitor.java \
-	     $(srcdir)/jamvm/vmep/Opcode.java 
+	     $(srcdir)/jamvm/vmep/Opcode.java \
+	     $(srcdir)/jamvm/vmep/RuntimeFilter.java 
 
 
 inst_classes.zip: classes.zip

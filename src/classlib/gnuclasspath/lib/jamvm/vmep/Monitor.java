@@ -4,9 +4,17 @@ import java.util.Arrays;
 import java.util.Hashtable;
 import java.lang.reflect.Method;
 import java.util.Map.Entry;
+import java.util.LinkedList;
+import java.util.List;
 
 public class Monitor{
-	public static final int RUNNING=2;
+	static{
+		initMonitors(RuntimeFilter.class);
+	}
+	private static native void initMonitors(Class c);
+
+	public static final int STARTED=2;
+	public static final int RUNNING=3;
 	public static final int STOPPED=1;
 	public static final int STOPPED_CACHED=0;
 	public static final int OPCODE_COUNT=201;
@@ -15,7 +23,7 @@ public class Monitor{
 	private native void mstop();
 
 	public void start(){
-		status=RUNNING;
+		status=STARTED;
 		mstart();
 	}
 	public void stop(){
@@ -58,5 +66,20 @@ public class Monitor{
 	}
 	public int getCountFor(Package p, int opcode){
 		return getCountsFor(p)[opcode];
+	}
+
+
+
+	private RuntimeFilter[] rFilters=new RuntimeFilter[0];
+
+	public void addRuntimeFilter(RuntimeFilter filter){
+		rFilters=Arrays.copyOf(rFilters,rFilters.length+1);	
+		rFilters[rFilters.length-1]=filter;
+	}
+
+	public void removeRuntimeFilter(RuntimeFilter filter){
+		LinkedList<RuntimeFilter> list = new LinkedList<RuntimeFilter>();
+		for(RuntimeFilter f:rFilters) if(f!=filter) list.add(f);
+		rFilters = list.toArray(new RuntimeFilter[0]);
 	}
 }

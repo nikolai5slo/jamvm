@@ -1263,6 +1263,11 @@ uintptr_t *vmepMonitorStop(Class *class, MethodBlock *mb, uintptr_t *ostack) {
 	return ostack;
 }
 
+uintptr_t *vmepMonitorInit(Class *class, MethodBlock *mb, uintptr_t *ostack) {
+	vmepInitialize(class,(Class*)ostack[0]);
+	return ostack;
+}
+
 
 VMMethod vm_object[] = {
     {"getClass",                    NULL, getClass},
@@ -1488,6 +1493,7 @@ VMMethod vm_class_loader_data[] = {
 VMMethod vmep_monitor[]={
 	{"mstart",	NULL,vmepMonitorStart},
 	{"mstop",	NULL,vmepMonitorStop},
+	{"initMonitors",NULL,vmepMonitorInit},
 	{NULL,NULL,NULL}
 };
 /* VMEP Core */

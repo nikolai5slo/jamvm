@@ -212,10 +212,8 @@ void shutdownInlining() {
 /* VMEP functions */
 void vmepAddMonitor(Object* obj){}
 void vmepRemoveMonitor(Object* obj){}
-FieldBlock *vmepFindField(Class *class, char *fieldname, char *type){ return NULL; }
-MethodBlock *vmepFindMethod(Class *class, char *methodname, char *type){ return NULL; }
-void vmepCountAdd(Object *monitor,MethodBlock *mb,int opcode){}
+void vmepExecd(ExecEnv *ee,Instruction *inst){}
 
 MonitorItem* first_monitor=NULL;
 int vmep_mode;
-
+Frame* ret_frame=NULL;
