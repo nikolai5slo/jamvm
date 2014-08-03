@@ -21,5 +21,6 @@
 
 EXTRA_DIST = \
 Monitor.java \
+InstructionMonitor.java \
 RuntimeFilter.java \
 Opcode.java

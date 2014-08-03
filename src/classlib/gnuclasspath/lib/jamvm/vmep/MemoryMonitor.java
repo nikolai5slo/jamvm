@@ -20,6 +20,11 @@ public class MemoryMonitor extends Monitor{
 		return memuse;	
 	}
 
+	/**
+	 * Returns sum of sizes for all memory allocations in method.
+	 * @param	m	Method to get results for
+	 * @return		Size in bytes
+	 */
 	public int getMemUseFor(Method m){
 		int[] memuse=memcount.get(m);
 		if(memuse==null) return -1;
@@ -27,6 +32,11 @@ public class MemoryMonitor extends Monitor{
 		return memuse[0]+memuse[1]+memuse[2];
 	}
 
+	/**
+	 * Returns sum of sizes for all memory allocations in methods which are in specifed package.
+	 * @param	p	Package to get results for
+	 * @return		Size in bytes
+	 */
 	public int getMemUseFor(Package p){
 		int sum=-1;
 		for(Entry<Method,int[]> entry:memcount.entrySet()){
@@ -38,6 +48,10 @@ public class MemoryMonitor extends Monitor{
 		return sum;
 	}
 
+	/**
+	 * Returns sum of sizes for all memory allocations in all monitored methods.
+	 * @return		Size in bytes
+	 */
 	public int getMemUse(){
 		int sum=-1;	
 

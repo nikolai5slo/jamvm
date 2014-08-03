@@ -231,8 +231,9 @@ opc##x##_##y##_##z:
     label(opcode, level, ENTRY)                 \
         PRE                                     \
     GUARD(opcode, level)                        \
-	VEMP_EXECD()				\
+	VMEP_EXEPRE()				\
         BODY                                    \
+	VMEP_EXEMEM()				\
     label(opcode, level, END)
 
 #define DEF_OPC(opcode, level, BODY)            \

@@ -1,9 +1,13 @@
+#include <stdlib.h>
+
 #include "list.h"
+
 
 LinkedList* newLinkedList(){
 	LinkedList* list=malloc(sizeof(LinkedList));	
 	list->first=NULL;
 	list->count=0;
+	return list;
 }
 void linkedListAdd(LinkedList* list,void* value){
 	LinkedListItem* item=list->first;
@@ -23,16 +27,21 @@ void linkedListAdd(LinkedList* list,void* value){
 	list->count++;
 }
 int linkedListRemove(LinkedList* list,void* value){
-	LinkedList* item=list->first;	
+	LinkedListItem* item=list->first;	
 	while(item!=NULL){
 		if(item->value==value){
-			if(item->prev==NULL) list->first=item->next;
-			else item->prev->next=item->next;
-			item->next->prev=item->prev;
+			if(item->prev==NULL){
+				list->first=item->next;
+				if(list->first!=NULL) list->first->prev=NULL;
+			}else item->prev->next=item->next;
+
+			if(item->next!=NULL) item->next->prev=item->prev;
+
 			free(item);
 			list->count--;
 			return 1;
 		}
+		item=item->next;
 	}
 	return 0;
 }

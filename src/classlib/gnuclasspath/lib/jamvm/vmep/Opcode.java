@@ -1,7 +1,15 @@
 package jamvm.vmep;
 import java.lang.reflect.*;
 
+/**
+ * Class of constants for opcodes.
+ */
 public class Opcode{
+	/**
+	 * Gets name of instruction for specifed opcode.
+	 * @param	opcode	Instruction opcode
+	 * @return		Name of instruction
+	 */
 	public static String getNameFor(int opcode){
 		try{
 			for(Field f:Opcode.class.getDeclaredFields()){

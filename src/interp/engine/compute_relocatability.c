@@ -210,10 +210,7 @@ void shutdownInlining() {
 }
 
 /* VMEP functions */
-void vmepAddMonitor(Object* obj){}
-void vmepRemoveMonitor(Object* obj){}
-void vmepExecd(ExecEnv *ee,Instruction *inst){}
-
-MonitorItem* first_monitor=NULL;
+void vmepExePre(ExecEnv *ee,Instruction *inst,Frame *frame,MethodBlock *mb){}
+void vmepExeMem(ExecEnv *ee,Instruction *inst,Frame *frame,MethodBlock *mb,uintptr_t *ostack){}
 int vmep_mode;
 Frame* ret_frame=NULL;

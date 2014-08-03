@@ -1,17 +1,17 @@
-
+typedef struct linkedlistitem LinkedListItem;
 struct linkedlistitem{
 	LinkedListItem* next;
 	LinkedListItem* prev;
 	void* value;
-} LinkedListItem;
+};
 
 struct linkedlist{
 	LinkedListItem* first;
 	int count;
-} LinkedList;
+} typedef LinkedList;
 
-void linkedListInit(LinkedList*);
-void linkedListAdd(LinkedList*,void*);
-void linkedListRemove(LinkedList*,void*);
+extern LinkedList* newLinkedList();
+extern void linkedListAdd(LinkedList*,void*);
+extern int linkedListRemove(LinkedList*,void*);
 
 

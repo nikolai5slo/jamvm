@@ -103,8 +103,9 @@ int initVM(InitArgs *args) {
     initialisePlatform();
 
     /* Initialise the VM modules -- ordering is important! */
-
+    
     status = initialiseHooks(args) &&
+	     initialiseVmep(args) &&
              initialiseProperties(args) &&
              initialiseAlloc(args) &&
              initialiseThreadStage1(args) &&
@@ -121,7 +122,7 @@ int initVM(InitArgs *args) {
              initialiseJNI() &&
              initialiseInterpreter(args) &&
              initialiseThreadStage2(args) &&
-             initialiseGC(args);
+             initialiseGC(args); 
 
     VM_initing = FALSE;
     return status;

@@ -1264,10 +1264,9 @@ uintptr_t *vmepMonitorStop(Class *class, MethodBlock *mb, uintptr_t *ostack) {
 }
 
 uintptr_t *vmepMonitorInit(Class *class, MethodBlock *mb, uintptr_t *ostack) {
-	vmepInitialize(class,(Class*)ostack[0]);
+	vmepInitialiseMonitor(class,(Class*)ostack[0]);
 	return ostack;
 }
-
 
 VMMethod vm_object[] = {
     {"getClass",                    NULL, getClass},
@@ -1496,12 +1495,6 @@ VMMethod vmep_monitor[]={
 	{"initMonitors",NULL,vmepMonitorInit},
 	{NULL,NULL,NULL}
 };
-/* VMEP Core */
-VMMethod vmep_core[]={
-	//{"addCoreListener",	NULL,vmepMonitorStart},
-	//{"removeCoreListener",	NULL,vmepMonitorStop},
-	{NULL,NULL,NULL}
-};
 
 VMClass native_methods[] = {
     {"java/lang/VMClass",                           vm_class},
@@ -1523,7 +1516,6 @@ VMClass native_methods[] = {
     {"sun/misc/Unsafe",                             sun_misc_unsafe},
     {"jamvm/java/lang/VMClassLoaderData$Unloader",  vm_class_loader_data},
     {"jamvm/vmep/Monitor",			    vmep_monitor},
-    {"jamvm/vmep/Core",			    	    vmep_core},
     {"java/util/concurrent/atomic/AtomicLong",      concurrent_atomic_long},
     {NULL,                                          NULL}
 };
