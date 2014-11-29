@@ -45,6 +45,7 @@ JAVA_FILES = $(srcdir)/jamvm/java/lang/JarLauncher.java \
              $(srcdir)/gnu/classpath/VMStackWalker.java \
 	     $(srcdir)/jamvm/vmep/Monitor.java \
 	     $(srcdir)/jamvm/vmep/InstructionMonitor.java \
+	     $(srcdir)/jamvm/vmep/MemoryMonitor.java \
 	     $(srcdir)/jamvm/vmep/Opcode.java \
 	     $(srcdir)/jamvm/vmep/RuntimeFilter.java
 
